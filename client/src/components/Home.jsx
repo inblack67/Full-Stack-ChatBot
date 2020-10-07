@@ -1,8 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-const Home = () => {
-  const { register, handleSubmit } = useForm();
+const Home = ({ history }) => {
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      name: 'John',
+    },
+  });
 
   return (
     <div className='container'>
@@ -10,6 +14,7 @@ const Home = () => {
       <form
         onSubmit={handleSubmit((data) => {
           console.log(data);
+          history.push(`/${data.room}/${data.name}`);
         })}
       >
         <div className='input-field'>
